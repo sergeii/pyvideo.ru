@@ -33,7 +33,7 @@
         <p>
             {% with speakers=video.speakers.all %}
             {% if speakers %}
-                {% for speaker in speakers %}{% if not forloop.first %}, {% endif %}<a href="{{ s.get_absolute_url }}">{{ speaker.name }}</a>{% endfor %}
+                {% for speaker in speakers %}{% if not forloop.first %}, {% endif %}<a href="{{ speaker.get_absolute_url }}">{{ speaker.name }}</a>{% endfor %}
             {% endif %}
             {% endwith %}
         </p>

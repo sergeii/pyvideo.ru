@@ -31,43 +31,43 @@
             <table class="table table-hover">
                 <tbody>
                 {% if cats_by_group %}
-                  {% for grouping in cats_by_group|dictsort:'title' %}
-                    {% if grouping.cats|length > 1 %}
-                      <tr><td colspan="4">{{ grouping.title }}</td></tr>
-                    {% endif %}
-                    {% for cat in grouping.cats %}
-                      <tr>
-                        <td>
-                          {% if grouping.cats|length > 1 %}
-                            <span class="indent">
-                              <a href="{{ cat.get_absolute_url }}">{{ cat.title_year }}</a>
-                            </span>
-                          {% else %}
-                            <a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
-                          {% endif %}
-                        </td>
-                        <td>
-                          {% if cat.start_date %}
-                            {{ cat.start_date|date:"d.m.Y" }}
-                          {% else %}
-                            &nbsp;
-                          {% endif %}
-                        </td>
-                        <td>
-                          {{ cat.videos.live.count }}
-                        </td>
-                        <td>
-                          <a class="feed" href="{% url 'videos-category-videos-feed' category_id=cat.pk slug=cat.slug %}"> feed</a>
-                        </td>
-                      </tr>
+                    {% for grouping in cats_by_group|dictsort:'title' %}
+                        {% if grouping.cats|length > 1 %}
+                            <tr>
+                                <td colspan="4">{{ grouping.title }}</td>
+                            </tr>
+                        {% endif %}
+                        {% for cat in grouping.cats %}
+                            <tr>
+                                <td>
+                                    {% if grouping.cats|length > 1 %}
+                                        <span class="indent"><a href="{{ cat.get_absolute_url }}">{{ cat.title_year }}</a></span>
+                                    {% else %}
+                                        <a href="{{ cat.get_absolute_url }}">{{ cat.title }}</a>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if cat.start_date %}
+                                        {{ cat.start_date|date:"d.m.Y" }}
+                                    {% else %}
+                                        &nbsp;
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {{ cat.videos.live.count }}
+                                </td>
+                                <td>
+                                    <a class="feed" href="{% url 'videos-category-videos-feed' category_id=cat.pk slug=cat.slug %}"> RSS</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     {% endfor %}
-                  {% endfor %}
                 {% else %}
-                  <tr>
-                    <td>No categories</td>
-                  </tr>
+                    <tr>
+                        <td>No categories</td>
+                    </tr>
                 {% endif %}
-              </tbody>
+                </tbody>
             </table>
         </div>
     </div>
